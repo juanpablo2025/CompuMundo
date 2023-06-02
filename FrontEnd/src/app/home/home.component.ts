@@ -12,21 +12,19 @@ export class HomeComponent {
 
   public mercancias1:Mercancia={
     iup:1,
-    nombre:"aaa",
+    nombre:"aaa2",
     descripcion:"ddddddddd",
-    fecha:"iii",
-    motivo:"eee",
-    volumen:"wewewe",
+    fecha:"ii424i",
+    motivo:"eerge",
+    volumen:"wewethtwe",
     almacenamiento:{
       iup:1,
-      zona:"B",
+      zona:"a",
       unidadescubicas:"234324"
     }
     
-
-
-
-  } public mercancias2:Mercancia={
+  }
+   public mercancias2:Mercancia={
     iup:1,
     nombre:"aaa",
     descripcion:"ddddddddd",
@@ -35,22 +33,22 @@ export class HomeComponent {
     volumen:"wewewe",
     almacenamiento:{
       iup:1,
-      zona:"B",
+      zona:"c",
       unidadescubicas:"234324"
     }
 
 }
 public mercancias3:Mercancia={
   iup:1,
-  nombre:"aaa",
-  descripcion:"ddddddddd",
+  nombre:"aweweaa",
+  descripcion:"dddddwewedddd",
   fecha:"iii",
   motivo:"eee",
-  volumen:"wewewe",
+  volumen:"wewewwewe",
   almacenamiento:{
     iup:1,
     zona:"B",
-    unidadescubicas:"234324"
+    unidadescubicas:"2343ewe24"
   }}
 public constructor(){
   this.mercancias.push(this.mercancias1)
