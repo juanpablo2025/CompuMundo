@@ -1,0 +1,24 @@
+<p>home works!</p>
+<app-menu></app-menu>
+<section class="banner text-center text-white fw-bold">
+    <h3>CompuMundo HiperMegaRed</h3>
+    <h4>Bantu | Medellín</h4>
+</section>
+<app-acercade></app-acercade>
+<section class="banner2">
+    
+</section>
+<section>
+    <div class="container my-5">
+        <div class="row row-cols-1 row-cols-md-2 g-3">
+            <div class="col" *ngFor="let mercancia of mercancias">
+                <div class="card h-100 shadow p-4">
+                    <h1>iup: {{mercancia.iup}}</h1>
+                    <h3>Nombre: {{mercancia.nombre}}</h3>
+                    <h5>Descripcion: {{mercancia.descripcion}}</h5>
+                    <h6>Acudiente:{{mercancia.almacenamiento.zona}} </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
