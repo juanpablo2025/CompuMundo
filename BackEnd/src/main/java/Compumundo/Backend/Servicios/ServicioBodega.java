@@ -53,7 +53,7 @@ public class ServicioBodega implements ServicioBase<Bodega>{
             throw new Exception(error.getMessage());
         }
     }
-    
+
 
     @Override
     public Bodega actualizar(Integer id, Bodega datosNuevos) throws Exception {

@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { AcerdadeComponent } from './acerdade/acerdade.component';
+import { FormularioComponent } from './formulario/formulario.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { AcerdadeComponent } from './acerdade/acerdade.component';
     HomeComponent,
     MenuComponent,
     FooterComponent,
-    AcerdadeComponent
+    AcerdadeComponent,
+    FormularioComponent
   ],
   imports: [
     BrowserModule,
