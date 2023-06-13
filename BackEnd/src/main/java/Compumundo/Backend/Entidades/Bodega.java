@@ -1,6 +1,9 @@
 package Compumundo.Backend.Entidades;
 
+
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name="bodega")
@@ -21,42 +24,9 @@ private Integer id;
     @Column(name="Ubicacion",nullable = false, length =50 )
     private String Ubicacion;
 
-    public Bodega(Integer id, String controEntrada, String controlSalida, String ubicacion) {
-        this.id = id;
-        ControEntrada = controEntrada;
-        ControlSalida = controlSalida;
-        Ubicacion = ubicacion;
-    }
 
-    public Integer getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "bodega")
+    private List<Mercancia> mercancia;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public String getControEntrada() {
-        return ControEntrada;
-    }
-
-    public void setControEntrada(String controEntrada) {
-        ControEntrada = controEntrada;
-    }
-
-    public String getControlSalida() {
-        return ControlSalida;
-    }
-
-    public void setControlSalida(String controlSalida) {
-        ControlSalida = controlSalida;
-    }
-
-    public String getUbicacion() {
-        return Ubicacion;
-    }
-
-    public void setUbicacion(String ubicacion) {
-        Ubicacion = ubicacion;
-    }
 }

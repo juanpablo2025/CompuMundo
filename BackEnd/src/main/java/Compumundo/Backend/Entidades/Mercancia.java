@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="estudiantes")
+@Table(name="mercancias")
 public class Mercancia {
 
     @Id
@@ -27,18 +27,22 @@ public class Mercancia {
     @Column(name="volumen",nullable = false, length =50)
     private String volumen;
 
-    @OneToOne(mappedBy = "estudiante", cascade = CascadeType.ALL)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "bodega",nullable = false)
     @JsonBackReference
     private Bodega bodega;
 
-    public Mercancia(Integer id, String nombre, String descripcion, String fecha_entrada, String motivo_devolucion, String volumen, Bodega bodega) {
+
+    public Mercancia() {
+    }
+
+    public Mercancia(Integer id, String nombre, String descripcion, String fecha_entrada, String motivo_devolucion, String volumen) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha_entrada = fecha_entrada;
         this.motivo_devolucion = motivo_devolucion;
         this.volumen = volumen;
-        this.bodega = bodega;
     }
 
     public Integer getId() {
@@ -87,13 +91,5 @@ public class Mercancia {
 
     public void setVolumen(String volumen) {
         this.volumen = volumen;
-    }
-
-    public Bodega getBodega() {
-        return bodega;
-    }
-
-    public void setBodega(Bodega bodega) {
-        this.bodega = bodega;
     }
 }
