@@ -32,6 +32,9 @@ public class Mercancia {
     @JsonBackReference
     private Bodega bodega;
 
+    @Transient/*se utiliza para indicarle a JPA que un atributo de una Entidad no debe de ser persistente*/
+    private String mensajeError;
+
 
     public Mercancia() {
     }
