@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +10,8 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { AcerdadeComponent } from './acerdade/acerdade.component';
 import { FormularioComponent } from './formulario/formulario.component';
+import { MercanciaComponent } from './formulario/mercancia/mercancia.component';
+import { BodegaComponent } from './formulario/bodega/bodega.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +20,14 @@ import { FormularioComponent } from './formulario/formulario.component';
     MenuComponent,
     FooterComponent,
     AcerdadeComponent,
-    FormularioComponent
+    FormularioComponent,
+    MercanciaComponent,
+    BodegaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule
   ],
   providers: [],

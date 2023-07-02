@@ -27,7 +27,7 @@ public class Mercancia {
     @Column(name="volumen",nullable = false, length =50)
     private String volumen;
 
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bodega",nullable = false)
     @JsonBackReference
     private Bodega bodega;

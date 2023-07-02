@@ -1,0 +1,19 @@
+.mercanciacontainer{
+
+    background-color:antiquewhite;
+    display: inline-block;
+    padding: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    margin:  10px;
+    
+}
+
+.tittle {
+    margin:  20px;
+
+}
