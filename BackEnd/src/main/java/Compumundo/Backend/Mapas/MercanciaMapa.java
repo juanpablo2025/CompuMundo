@@ -1,6 +1,6 @@
 package Compumundo.Backend.Mapas;
 
-import Compumundo.Backend.DTO.MercanciaDTO;
+import Compumundo.Backend.DTO.MercanciaDTO.MercanciaDTO;
 import Compumundo.Backend.Entidades.Mercancia;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

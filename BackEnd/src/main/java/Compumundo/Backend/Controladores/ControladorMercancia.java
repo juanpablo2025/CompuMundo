@@ -1,8 +1,8 @@
 package Compumundo.Backend.Controladores;
 
 
-import Compumundo.Backend.DTO.ErrorDTO;
-import Compumundo.Backend.DTO.MercanciaDTO;
+import Compumundo.Backend.DTO.MercanciaDTO.ErrorDTO;
+import Compumundo.Backend.DTO.MercanciaDTO.MercanciaDTO;
 import Compumundo.Backend.Entidades.Mercancia;
 import Compumundo.Backend.Servicios.ServicioMercancia;
 import io.swagger.v3.oas.annotations.Operation;

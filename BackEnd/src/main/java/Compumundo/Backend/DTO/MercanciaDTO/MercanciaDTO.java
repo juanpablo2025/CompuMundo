@@ -1,4 +1,4 @@
-package Compumundo.Backend.DTO;
+package Compumundo.Backend.DTO.MercanciaDTO;
 
 import Compumundo.Backend.Entidades.Bodega;
 

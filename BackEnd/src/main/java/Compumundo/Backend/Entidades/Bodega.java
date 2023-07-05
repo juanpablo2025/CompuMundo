@@ -15,13 +15,14 @@ public class Bodega {
 @Column(name="id")
 private Integer id;
 
-    @Column(name="ControlEntrada",nullable = false, length =50 )
-    private String ControEntrada;
 
-    @Column(name="ControlSalida",nullable = false, length =50 )
-    private String ControlSalida;
+    @Column(name="espacio_disponible" )
+    private Double espacioDisponible;
 
-    @Column(name="Ubicacion",nullable = false, length =50 )
+    @Column(name="espacio_total")
+    private Double espacioTotal;
+
+    @Column(name="Ubicacion" )
     private String Ubicacion;
 
 
@@ -36,10 +37,10 @@ private Integer id;
     public Bodega() {
     }
 
-    public Bodega(Integer id, String controEntrada, String controlSalida, String ubicacion, List<Mercancia> mercancia) {
+    public Bodega(Integer id, Double espacioDisponible, Double espacioTotal, String ubicacion, List<Mercancia> mercancia) {
         this.id = id;
-        ControEntrada = controEntrada;
-        ControlSalida = controlSalida;
+        this.espacioDisponible = espacioDisponible;
+        this.espacioTotal = espacioTotal;
         Ubicacion = ubicacion;
         this.mercancia = mercancia;
     }
@@ -52,20 +53,20 @@ private Integer id;
         this.id = id;
     }
 
-    public String getControEntrada() {
-        return ControEntrada;
+    public Double getEspacioDisponible() {
+        return espacioDisponible;
     }
 
-    public void setControEntrada(String controEntrada) {
-        ControEntrada = controEntrada;
+    public void setEspacioDisponible(Double espacioDisponible) {
+        this.espacioDisponible = espacioDisponible;
     }
 
-    public String getControlSalida() {
-        return ControlSalida;
+    public Double getEspacioTotal() {
+        return espacioTotal;
     }
 
-    public void setControlSalida(String controlSalida) {
-        ControlSalida = controlSalida;
+    public void setEspacioTotal(Double espacioTotal) {
+        this.espacioTotal = espacioTotal;
     }
 
     public String getUbicacion() {

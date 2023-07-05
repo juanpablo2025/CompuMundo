@@ -1,4 +1,4 @@
-package Compumundo.Backend.DTO;
+package Compumundo.Backend.DTO.MercanciaDTO;
 
 public class ErrorDTO extends MercanciaDTO{
     private String error;

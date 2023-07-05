@@ -1,9 +1,11 @@
 package Compumundo.Backend.Servicios;
 
 
-import Compumundo.Backend.DTO.MercanciaDTO;
+import Compumundo.Backend.DTO.MercanciaDTO.MercanciaDTO;
+import Compumundo.Backend.Entidades.Bodega;
 import Compumundo.Backend.Entidades.Mercancia;
 import Compumundo.Backend.Mapas.MercanciaMapa;
+import Compumundo.Backend.Repositorios.RepositorioBodega;
 import Compumundo.Backend.Repositorios.RepositorioMercancia;
 import Compumundo.Backend.Validadores.MercanciaValidaciones;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class ServicioMercancia implements ServicioBaseDTO<Mercancia, MercanciaDT
     private RepositorioMercancia repositorioMercancia;
     @Autowired
     private MercanciaMapa mercanciaMapa;
+
+    @Autowired
+    private RepositorioBodega repositorioBodega;
 
     @Autowired
     private MercanciaValidaciones mercanciaValidaciones;
@@ -52,10 +57,20 @@ public class ServicioMercancia implements ServicioBaseDTO<Mercancia, MercanciaDT
     @Override
     public MercanciaDTO registrar(Mercancia datosARegistrar) throws Exception {
         try {
+            MercanciaDTO mercancia = mercanciaMapa.mapearMercancia(datosARegistrar);
+            Optional<Bodega>  bodega= repositorioBodega.findById(datosARegistrar.getId());
+            if(bodega.isPresent()){
+                Bodega bodegas = bodega.get();
+                if(bodegas.getEspacioDisponible()+ mercancia.getVolumen()>bodegas.getEspacioTotal()){
+                    throw new Exception("El volumen supera el espacio permitido");
+                }else{
+                    bodegas.setEspacioDisponible(bodegas.getEspacioDisponible()+mercancia.getVolumen());
+                    repositorioBodega.save(bodegas);
+                    return mercanciaMapa.mapearMercancia(repositorioMercancia.save(datosARegistrar));
+                }
 
+            }else throw new Exception("La bodega no existe");
 
-            MercanciaDTO mercanciaGuardada = mercanciaMapa.mapearMercancia(repositorioMercancia.save(datosARegistrar));
-            return mercanciaGuardada;
         }catch(Exception error){
             throw new Exception(error.getMessage());
 
@@ -65,27 +80,29 @@ public class ServicioMercancia implements ServicioBaseDTO<Mercancia, MercanciaDT
 
     @Override
     public MercanciaDTO actualizar(Integer id, Mercancia datosNuevos) throws Exception {
-        /*try{
-            Optional<Mercancia>mercanciaOpcional =repositorioMercancia.findById(id);
-            if(mercanciaOpcional.isPresent()){
-                Mercancia mercanciaExistente=mercanciaOpcional.get();
+        try {
+
+
+            Optional<Mercancia> mercanciaOpcional = repositorioMercancia.findById(id);
+            MercanciaDTO mercancia = mercanciaMapa.mapearMercancia(datosNuevos);
+            if (mercanciaOpcional.isPresent()) {
+                Mercancia mercanciaExistente = mercanciaOpcional.get();
                 mercanciaExistente.setNombre(datosNuevos.getNombre());
                 mercanciaExistente.setDescripcion(datosNuevos.getDescripcion());
                 mercanciaExistente.setFecha_entrada(datosNuevos.getFecha_entrada());
                 mercanciaExistente.setMotivo_devolucion(datosNuevos.getMotivo_devolucion());
                 mercanciaExistente.setVolumen(datosNuevos.getVolumen());
-                Mercancia mercanciaActualizada=repositorioMercancia.save(mercanciaExistente);
-                return mercanciaActualizada;
-            }else{
+
+                return mercanciaMapa.mapearMercancia(repositorioMercancia.save(datosNuevos));
+            } else {
                 throw new Exception("Mercancia no encontrada");
             }
-        }catch(Exception error){
+        } catch (Exception error) {
             throw new Exception(error.getMessage());
         }
-
-         */
-        return null;
     }
+
+
 
     @Override
     public boolean eliminar(Integer id) throws Exception {
