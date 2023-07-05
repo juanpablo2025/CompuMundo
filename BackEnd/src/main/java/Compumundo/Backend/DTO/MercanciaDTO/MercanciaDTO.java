@@ -8,7 +8,7 @@ public class MercanciaDTO {
     private String descripcion;
     private String fechaEntrada;
     private String motivo;
-    private String volumen;
+    private Double volumen;
     private Bodega bodega;
     public String getNombre() {
         return nombre;
@@ -34,12 +34,15 @@ public class MercanciaDTO {
     public void setMotivo(String motivo) {
         this.motivo = motivo;
     }
-    public String getVolumen() {
+
+    public Double getVolumen() {
         return volumen;
     }
-    public void setVolumen(String volumen) {
+
+    public void setVolumen(Double volumen) {
         this.volumen = volumen;
     }
+
     public Bodega getBodega() {
         return bodega;
     }
