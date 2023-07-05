@@ -12,10 +12,22 @@ import java.util.List;
 public interface MercanciaMapa {
 
     @Mappings({
-            @Mapping(source="nombre", target = "nombre")
+
+            @Mapping(source="nombre", target = "nombre"),
+            @Mapping(source="descripcion",target="descripcion"),
+            @Mapping(source="fecha_entrada",target="fechaEntrada"),
+            @Mapping(source="motivo_devolucion",target="motivo"),
+            @Mapping(source="volumen",target="volumen")
+
+
+
+
+
+
+
     })
-public MercanciaDTO mapearMercancia(Mercancia mercancia);
-public List<MercanciaDTO> mapearMercancias(List<Mercancia>mercancias);
+    public MercanciaDTO mapearMercancia(Mercancia mercancia);
+    public List<MercanciaDTO> mapearMercancias(List<Mercancia> mercancias);
 
 
 

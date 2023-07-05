@@ -5,6 +5,7 @@ public class ErrorDTO extends MercanciaDTO{
 
 
     public String getError() {
+
         return error;
     }
 

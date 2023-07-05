@@ -1,5 +1,6 @@
 package Compumundo.Backend.Servicios;
 
+
 import Compumundo.Backend.DTO.MercanciaDTO;
 import Compumundo.Backend.Entidades.Mercancia;
 import Compumundo.Backend.Mapas.MercanciaMapa;
@@ -7,14 +8,12 @@ import Compumundo.Backend.Repositorios.RepositorioMercancia;
 import Compumundo.Backend.Validadores.MercanciaValidaciones;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ServicioMercancia implements ServicioBaseDTO<Mercancia,MercanciaDTO>{
-
+public class ServicioMercancia implements ServicioBaseDTO<Mercancia, MercanciaDTO> {
     @Autowired
     private RepositorioMercancia repositorioMercancia;
     @Autowired
@@ -22,9 +21,7 @@ public class ServicioMercancia implements ServicioBaseDTO<Mercancia,MercanciaDTO
 
     @Autowired
     private MercanciaValidaciones mercanciaValidaciones;
-
     @Override
-    @Transactional(readOnly = true)
     public List <MercanciaDTO> buscarTodos() throws Exception{
         try{
             List<MercanciaDTO>mercancias=mercanciaMapa.mapearMercancias(repositorioMercancia.findAll());
@@ -36,12 +33,12 @@ public class ServicioMercancia implements ServicioBaseDTO<Mercancia,MercanciaDTO
     }
 
     @Override
-    @Transactional(readOnly=true)
+
     public MercanciaDTO buscarPorId(Integer id) throws Exception {
         try{
             Optional<Mercancia>mercaciaOpcional=repositorioMercancia.findById(id);
             if(mercaciaOpcional.isPresent()){
-                return mercaciaOpcional.get();
+                return  mercanciaMapa.mapearMercancia(mercaciaOpcional.get());
 
 
             }else{
@@ -68,30 +65,33 @@ public class ServicioMercancia implements ServicioBaseDTO<Mercancia,MercanciaDTO
 
     @Override
     public MercanciaDTO actualizar(Integer id, Mercancia datosNuevos) throws Exception {
-       try{
-           Optional<MercanciaDTO>mercanciaOpcional =repositorioMercancia.findById(id);
-           if(mercanciaOpcional.isPresent()){
-               MercanciaDTO mercanciaExistente=mercanciaOpcional.get();
-               mercanciaExistente.setNombre(datosNuevos.getNombre());
-               mercanciaExistente.setDescripcion(datosNuevos.getDescripcion());
-               mercanciaExistente.setFecha_entrada(datosNuevos.getFecha_entrada());
-               mercanciaExistente.setMotivo_devolucion(datosNuevos.getMotivo_devolucion());
-               mercanciaExistente.setVolumen(datosNuevos.getVolumen());
-               MercanciaDTO mercanciaActualizada=repositorioMercancia.save(mercanciaExistente);
-                       return mercanciaActualizada;
-           }else{
-               throw new Exception("Mercancia no encontrada");
-           }
-       }catch(Exception error){
-           throw new Exception(error.getMessage());
-       }
+        /*try{
+            Optional<Mercancia>mercanciaOpcional =repositorioMercancia.findById(id);
+            if(mercanciaOpcional.isPresent()){
+                Mercancia mercanciaExistente=mercanciaOpcional.get();
+                mercanciaExistente.setNombre(datosNuevos.getNombre());
+                mercanciaExistente.setDescripcion(datosNuevos.getDescripcion());
+                mercanciaExistente.setFecha_entrada(datosNuevos.getFecha_entrada());
+                mercanciaExistente.setMotivo_devolucion(datosNuevos.getMotivo_devolucion());
+                mercanciaExistente.setVolumen(datosNuevos.getVolumen());
+                Mercancia mercanciaActualizada=repositorioMercancia.save(mercanciaExistente);
+                return mercanciaActualizada;
+            }else{
+                throw new Exception("Mercancia no encontrada");
+            }
+        }catch(Exception error){
+            throw new Exception(error.getMessage());
+        }
+
+         */
+        return null;
     }
 
     @Override
     public boolean eliminar(Integer id) throws Exception {
         try{
 
-            Optional<MercanciaDTO>mercanciaOpcional =repositorioMercancia.findById(id);
+            Optional<Mercancia> mercanciaOpcional =repositorioMercancia.findById(id);
             if(mercanciaOpcional.isPresent()){
                 repositorioMercancia.deleteById(id);
                 return true;

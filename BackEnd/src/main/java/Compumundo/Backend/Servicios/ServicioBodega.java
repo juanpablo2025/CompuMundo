@@ -17,7 +17,7 @@ public class ServicioBodega implements ServicioBase<Bodega>{
     protected RepositorioBodega repositorioBodega;
 
     @Override
-    @Transactional(readOnly=true)
+
     public List<Bodega> buscarTodos() throws Exception {
         try{
 

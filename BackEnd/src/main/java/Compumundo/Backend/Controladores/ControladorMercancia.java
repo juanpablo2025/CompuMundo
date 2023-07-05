@@ -59,9 +59,9 @@ public class ControladorMercancia {
 
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Mercancia>buscarPorId(@PathVariable Integer id ) {
+    public ResponseEntity<MercanciaDTO>buscarPorId(@PathVariable Integer id ) {
         try {
-            Mercancia mercanciaEncontrada = servicioMercancia.buscarPorId(id);
+            MercanciaDTO mercanciaEncontrada = servicioMercancia.buscarPorId(id);
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body(mercanciaEncontrada);
