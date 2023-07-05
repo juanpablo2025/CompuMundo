@@ -1,6 +1,8 @@
 package Compumundo.Backend.Controladores;
 
 
+import Compumundo.Backend.DTO.ErrorDTO;
+import Compumundo.Backend.DTO.MercanciaDTO;
 import Compumundo.Backend.Entidades.Mercancia;
 import Compumundo.Backend.Servicios.ServicioMercancia;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,29 +28,29 @@ public class ControladorMercancia {
             @ApiResponse(responseCode="201",description = "La mercania fue creada conrrectamente"),
             @ApiResponse(responseCode="400",description = "Error al crear la mercancia")
     })
-    public ResponseEntity<Mercancia>registrar(@RequestBody Mercancia datosAGuardar){
+    public ResponseEntity<MercanciaDTO>registrar(@RequestBody Mercancia datosAGuardar){
         try{
-            Mercancia mercanciaRegistrada = servicioMercancia.registrar(datosAGuardar);
+            MercanciaDTO mercanciaRegistrada = servicioMercancia.registrar(datosAGuardar);
             return ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(mercanciaRegistrada);
         }catch (Exception error){
-            String mensaje="Error al registrar"+error.getMessage();
-            Mercancia mercanciaConError = new Mercancia();
 
+            ErrorDTO errorDTO = new ErrorDTO();
+            errorDTO.setError(error.getMessage());
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body(mercanciaConError);
+                    .body(errorDTO);
         }
     }
 
     @GetMapping
-    public ResponseEntity<List<Mercancia>>buscarTodos(){
+    public ResponseEntity<List<MercanciaDTO>>buscarTodos(){
         try{
-            List<Mercancia> mercancia= servicioMercancia.buscarTodos();
+            List<MercanciaDTO> mercancias= servicioMercancia.buscarTodos();
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(mercancia);
+                    .body(mercancias);
         }catch(Exception error){
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
