@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="mercancias")
+@Table(name="mercancia")
 public class Mercancia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IUP")
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "nombre", nullable = false, length = 100)
@@ -28,8 +28,6 @@ public class Mercancia {
     private Double volumen;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bodega", nullable = false)
-    @JsonBackReference
     private Bodega bodega;
 
     @Transient/*se utiliza para indicarle a JPA que un atributo de una Entidad no debe de ser persistente*/

@@ -2,6 +2,7 @@ package Compumundo.Backend.Servicios;
 
 
 import Compumundo.Backend.DTO.MercanciaDTO.MercanciaDTO;
+import Compumundo.Backend.DTO.MercanciaDTO.MercanciaRequestDTO;
 import Compumundo.Backend.Entidades.Bodega;
 import Compumundo.Backend.Entidades.Mercancia;
 import Compumundo.Backend.Mapas.MercanciaMapa;
@@ -57,18 +58,18 @@ public class ServicioMercancia implements ServicioBaseDTO<Mercancia, MercanciaDT
     @Override
     public MercanciaDTO registrar(Mercancia datosARegistrar) throws Exception {
         try {
-            MercanciaDTO mercancia = mercanciaMapa.mapearMercancia(datosARegistrar);
+            MercanciaDTO mercanciaGuardada = mercanciaMapa.mapearMercancia(datosARegistrar);
+            System.out.println(mercanciaGuardada);
             Optional<Bodega>  bodega= repositorioBodega.findById(datosARegistrar.getId());
             if(bodega.isPresent()){
                 Bodega bodegas = bodega.get();
-                if(bodegas.getEspacioDisponible()+ mercancia.getVolumen()>bodegas.getEspacioTotal()){
+                if(bodegas.getEspacioDisponible()+mercanciaGuardada.getVolumen()>bodegas.getEspacioTotal()){
                     throw new Exception("El volumen supera el espacio permitido");
-                }else{
-                    bodegas.setEspacioDisponible(bodegas.getEspacioDisponible()+mercancia.getVolumen());
+                }else {
+                    bodegas.setEspacioDisponible(bodegas.getEspacioDisponible() + mercanciaGuardada.getVolumen());
                     repositorioBodega.save(bodegas);
                     return mercanciaMapa.mapearMercancia(repositorioMercancia.save(datosARegistrar));
                 }
-
             }else throw new Exception("La bodega no existe");
 
         }catch(Exception error){

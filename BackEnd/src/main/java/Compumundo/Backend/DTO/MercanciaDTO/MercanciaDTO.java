@@ -3,13 +3,24 @@ package Compumundo.Backend.DTO.MercanciaDTO;
 import Compumundo.Backend.Entidades.Bodega;
 
 public class MercanciaDTO {
-
+    private int id;
     private String nombre;
     private String descripcion;
     private String fechaEntrada;
     private String motivo;
     private Double volumen;
     private Bodega bodega;
+
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -50,6 +61,6 @@ public class MercanciaDTO {
         this.bodega = bodega;
     }
 
-    
+
 
 }

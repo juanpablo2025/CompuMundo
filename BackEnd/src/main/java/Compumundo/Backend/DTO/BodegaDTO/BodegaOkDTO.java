@@ -1,2 +1,4 @@
-package Compumundo.Backend.DTO.BodegaDTO;public class BodegaOkDto {
+package Compumundo.Backend.DTO.BodegaDTO;
+
+public class BodegaOkDTO {
 }

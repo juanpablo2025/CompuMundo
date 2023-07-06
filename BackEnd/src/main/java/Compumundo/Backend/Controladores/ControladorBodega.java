@@ -1,6 +1,10 @@
 package Compumundo.Backend.Controladores;
 
+import Compumundo.Backend.DTO.BodegaDTO.BodegaDTO;
+import Compumundo.Backend.DTO.BodegaDTO.ErrorDTO;
+import Compumundo.Backend.DTO.MercanciaDTO.MercanciaDTO;
 import Compumundo.Backend.Entidades.Bodega;
+import Compumundo.Backend.Entidades.Mercancia;
 import Compumundo.Backend.Servicios.ServicioBodega;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,22 +36,20 @@ public class ControladorBodega {
                     .status(HttpStatus.CREATED)
                     .body(BodegaRegistrada);
         }catch (Exception error){
-            String mensaje="Error al registrar"+error.getMessage();
-            Bodega bodegaConError = new Bodega();
 
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
-                    .body(bodegaConError);
+                    .body(null);
         }
     }
 
     @GetMapping
     public ResponseEntity<List<Bodega>>buscarTodos(){
         try{
-            List<Bodega> bodega= servicioBodega.buscarTodos();
+            List<Bodega> bodegas= servicioBodega.buscarTodos();
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(bodega);
+                    .body(bodegas);
         }catch(Exception error){
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
@@ -68,6 +70,30 @@ public class ControladorBodega {
                     .status(HttpStatus.NOT_FOUND)
                     .body(null);
 
+        }
+    }
+    @PutMapping
+    @Operation(summary = "Actualizar Bodega")
+    public ResponseEntity<BodegaDTO> actualizar(@PathVariable Integer id, @RequestBody Bodega datosNuevos ){
+        try {
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(servicioBodega.actualizar(id, datosNuevos));
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
+    }
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar una mercancia de la Base de datos")
+    public  ResponseEntity<Bodega> eliminar(@PathVariable Integer id){
+        try{
+            servicioBodega.eliminar(id);
+            return ResponseEntity
+                    .status(HttpStatus.OK).build();
+        }  catch (Exception error) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(null);
         }
     }
 }

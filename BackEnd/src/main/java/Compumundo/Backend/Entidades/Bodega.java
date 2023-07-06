@@ -1,6 +1,7 @@
 package Compumundo.Backend.Entidades;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -22,8 +23,8 @@ private Integer id;
     @Column(name="espacio_total")
     private Double espacioTotal;
 
-    @Column(name="Ubicacion" )
-    private String Ubicacion;
+    @Column(name="ubicacion" )
+    private String ubicacion;
 
 
     @OneToMany(mappedBy = "bodega")
@@ -41,7 +42,7 @@ private Integer id;
         this.id = id;
         this.espacioDisponible = espacioDisponible;
         this.espacioTotal = espacioTotal;
-        Ubicacion = ubicacion;
+        this.ubicacion = ubicacion;
         this.mercancia = mercancia;
     }
 
@@ -70,11 +71,11 @@ private Integer id;
     }
 
     public String getUbicacion() {
-        return Ubicacion;
+        return ubicacion;
     }
 
     public void setUbicacion(String ubicacion) {
-        Ubicacion = ubicacion;
+        this.ubicacion = ubicacion;
     }
 
     public List<Mercancia> getMercancia() {

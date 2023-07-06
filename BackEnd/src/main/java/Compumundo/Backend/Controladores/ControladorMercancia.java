@@ -3,6 +3,7 @@ package Compumundo.Backend.Controladores;
 
 import Compumundo.Backend.DTO.MercanciaDTO.ErrorDTO;
 import Compumundo.Backend.DTO.MercanciaDTO.MercanciaDTO;
+import Compumundo.Backend.DTO.MercanciaDTO.MercanciaRequestDTO;
 import Compumundo.Backend.Entidades.Mercancia;
 import Compumundo.Backend.Servicios.ServicioMercancia;
 import io.swagger.v3.oas.annotations.Operation;
@@ -71,6 +72,30 @@ public class ControladorMercancia {
                     .status(HttpStatus.NOT_FOUND)
                     .body(null);
 
+        }
+    }
+    @PutMapping
+    @Operation(summary = "Actualizar Mercancia")
+    public ResponseEntity<MercanciaDTO> actualizar(@PathVariable Integer id,@RequestBody Mercancia datosNuevos ){
+        try {
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(servicioMercancia.actualizar(id, datosNuevos));
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
+    }
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Eliminar una mercancia de la Base de datos")
+    public  ResponseEntity<Mercancia> eliminar(@PathVariable Integer id){
+        try{
+            servicioMercancia.eliminar(id);
+            return ResponseEntity
+                    .status(HttpStatus.OK).build();
+        }  catch (Exception error) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(null);
         }
     }
 

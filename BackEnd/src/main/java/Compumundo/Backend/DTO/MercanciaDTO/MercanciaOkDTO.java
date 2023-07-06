@@ -1,2 +1,4 @@
-package Compumundo.Backend.DTO.MercanciaDTO;public class MercanciaOkDTO {
+package Compumundo.Backend.DTO.MercanciaDTO;
+
+public class MercanciaOkDTO {
 }
